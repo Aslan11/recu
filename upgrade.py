@@ -17,6 +17,7 @@ for ip in iplist:
     sts = os.waitpid(p.pid, 0)
     print(sts)
     print('\nTar ball uploaded to {0}'.format(ip))
+    # unpack the tar ball
     print('\nLogging into {0}'.format(ip))
     sesh = subprocess.Popen(["ssh", "-i", identity, ip], stdin=subprocess.PIPE, stdout=subprocess.PIPE, universal_newlines=True, bufsize=0)
     sesh.stdin.write('sudo tar -xvf {0}\n'.format(tarball))
@@ -27,6 +28,7 @@ for ip in iplist:
             break
         print(line,end="")
     print('\nTarball Unpacked\nRunning install script...')
+    # run install.sh 
     sesh = subprocess.Popen(["ssh", "-i", identity, ip], stdin=subprocess.PIPE, stdout=subprocess.PIPE, universal_newlines=True, bufsize=0)
     sesh.stdin.write('sudo ./install.sh -y\n')
     sesh.stdin.write('echo END\n')
