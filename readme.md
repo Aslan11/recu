@@ -1,5 +1,4 @@
 # Redis Enterprise Cluster Upgrade Script
------
 ##### Dependencies:
 1. Python3
 2. .pem file to ssh / scp into servers
